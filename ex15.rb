@@ -1,16 +1,25 @@
-filename = ARGV.first
+filename = "ex15_sample.rb"
 txt = open(filename)
 
+lineCount = 0
+wordCount = 0
 puts "Here's your file #{filename}"
-print txt.read
+
+fileText = txt.read
+words = fileText.split(/\W+/)
+words.each do |word|
+  wordCount = wordCount + 1
+end
 
 txt.close
 
-print "Type the filename again: "
-file_again = $stdin.gets.chomp
+txt = open(filename)
 
-text_again = open(file_again)
+txt.each_line do |line|
+  lineCount = lineCount + 1
+end
 
-print text_again.read
 
-text_again.close
+puts "Line Count: #{lineCount}"
+puts "Word Count: #{words.count}"
+txt.close
